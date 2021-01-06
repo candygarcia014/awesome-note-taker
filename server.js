@@ -31,11 +31,8 @@ app.post("/api/notes", function(req, res) {
     res.send(dbData)
 });
 
-// app.delete("/api/notes/:id", function(req, res) {
-//     res.sendFile(path.join(__dirname, "public/notes.html"));
-// });
 
-// HELP
+//Delete route
 app.delete("/api/notes/:id", (req, res) => {
     const id = req.params.id;
     const dbDataTemp = dbData.findIndex(p => p.id == id);
