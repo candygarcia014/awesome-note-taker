@@ -35,6 +35,19 @@ app.post("/api/notes", function(req, res) {
 //     res.sendFile(path.join(__dirname, "public/notes.html"));
 // });
 
+// HELP
+app.delete("/api/notes/:id", (req, res) => {
+    const id = req.params.id;
+    const dbDataTemp = dbData.findIndex(p => p.id == id);
+    dbData.splice(dbDataTemp, 1);
+    fs.writeFile("./db/db.json", JSON.stringify(dbData), err => {
+        if (err) throw err
+        res.json(dbData)
+    })
+    res.sendFile(path.join(__dirname, "public/notes.html"));
+})
+
+
 //HTML Routes
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
